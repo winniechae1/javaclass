@@ -19,7 +19,7 @@ public class Ex01 {
 			}
 			System.out.println(Arrays.toString(std[i]));
 		}
-		System.out.println();
+
 	}
 
 }

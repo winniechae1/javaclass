@@ -24,6 +24,7 @@ public class Ex02 {
 				System.out.println(Arrays.toString(std[i]));
 			}
 
+			
 	}
 
 }
