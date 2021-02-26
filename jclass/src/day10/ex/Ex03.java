@@ -8,6 +8,36 @@ package day10.ex;
  */
 public class Ex03 {
 	
-
-
+	int width; 
+	int height;
+	public Ex03() {
+		int no1 = (int)(Math.random() * 9 + 1);
+		int no2 = (int)(Math.random() * 9 + 1);
+		print(no1, no2);
+	}
+	
+	public static void main(String[] args) {
+		new Ex03();
+	}
+	
+	public void setWidth(int w) {
+		width = w;
+	}
+	public void setHeight(int h) {
+		height = h;
+	}
+	public int setArea() {
+		int area = width * height;
+		return area;
+	}
+	
+	public void print(int w, int h) {
+		setWidth(w);
+		setHeight(h);
+		int area = width * height;
+		
+		System.out.println("πÿ∫Ø : " + width);
+		System.out.println("≥Ù¿Ã : " + height);
+		System.out.println("≥–¿Ã : " + area);
+	}
 }

@@ -15,56 +15,57 @@ import java.util.Random;
  */
 public class Ex02 {
 	
-	int[][] score = new int[10][5];
-	int[][] sum = new int[10][6];
-	
-	int test1;
+	int[][] score = new int[10][6];
 	
 	public Ex02() {
-		
-		
-		score2();
-		score3();
-		
+		ranScore();
+		setTotal();
+		setSort();
+		print();
 	}
 	public static void main(String[] args) {
 		new Ex02();
-
 	}
 	
-	void randscore() {
-		
-	}
-	
-	
-	void score2() {
-		for(int i = 0 ; i < 10 ; i++) {
-			for(int j = 0 ; j < 5 ; j++) {
-				sum[i][j] =score[i][j];
-				int tmp = sum[i][j];
-				sum[i][5] +=tmp;
+	public void ranScore() {
+		for(int i = 0; i < score.length; i++) {
+			for(int j = 0; j < score[i].length-1; j++) {
+				int num = (int)(Math.random() * 40 + 60);
+				score[i][j] = num;
 			}
-			System.out.println(Arrays.toString(sum[i]));
 		}
-		System.out.println();
 	}
 	
-	void score3() {
-		
-		for(int i = 0; i < sum.length; i++) {
-			for(int j = i+1; j < sum[i].length; j++) {
-				int s1 = sum[i][5];
-				int s2 = sum[j][5];
+	public void setTotal() {
+		for(int i = 0; i < score.length; i++) {
+			for(int j = 0; j < score[i].length-1; j++) {
+				score[i][score[i].length-1] += score[i][j];
+			}
+		}
+	}
+	
+	public void setSort() {
+		for(int i = 0; i < score.length-1; i++) {
+			for(int j = i+1; j < score.length; j++) {
+				int s1 = score[i][5];
+				int s2 = score[j][5];
 				if(s2 > s1) {
-					int[] tmp = sum[i];
-					sum[i] = sum[j];
-					sum[j] = tmp;
+					int[] tmp = score[i];
+					score[i] = score[j];
+					score[j] = tmp;
 				}
 			}
-			System.out.println(Arrays.toString(sum[i]));
 		}
 	}
-		
 	
-
+	public void print() {
+		for(int i = 0; i < score.length; i++) {
+			for(int j = 0; j < score[i].length; j++) {
+				System.out.print(score[i][j] + " | ");
+			}
+			System.out.println();
+		}
+	}
+	
+	
 }
