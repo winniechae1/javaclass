@@ -15,16 +15,22 @@ public class Ex01 {
 		for(int i = 0; i < semo.length; i++) {
 			semo[i] = new Semo();
 		}
-		
+		  
 		 for(int i = 0; i < semo.length; i++){
-		
+			 int width = semo[i].width;
+			 int height = semo[i].height;
+			 double area = semo[i].getArea();
+			 System.out.printf("¹Øº¯ : %d  ,  ³ôÀÌ : %d ,  ¸éÀû : %3f \n" , width, height, area);
+//			 System.out.printf("¹Øº¯ : %d  ,  ³ôÀÌ : %d ,  ¸éÀû : %3f \n" ,semo[i].width, semo[i].height, semo[i].area);
 		 }
-		
+		 
+		 
+		System.out.println("-----------------------------------------------------------------------");
 		for(Semo s : semo) {
 			int width = s.width;
 			int height = s.height;
 			double area = s.getArea();
-			System.out.printf("¹Øº¯ : %d  ,  ³ôÀÌ : %d ,  ¸éÀû : %3f \n" , width, height, area);
+			System.out.printf("¹Øº¯ : %2d  -  ³ôÀÌ : %2d  -  ¸éÀû : %5.2f \n" , width, height, area);
 		}
 	}
 	

@@ -13,4 +13,22 @@ public class Circle {
 	public double getArea() {
 		return Math.PI * rad * rad;
 	}
+	
+	/*
+	 	int rad;
+	 	double around, area;
+	 	
+	 	public Circle(){
+	 		rad = (int)(Math.random() * 11 + 5);
+	 		setAround();
+	 		setArea();
+		}
+		
+		public void setAround(){
+			around = 2 * Math.PI * rad;
+		}
+		public void setArea(){
+			area =  Math.PI * rad * rad;
+		}
+	 */
 }

@@ -13,7 +13,13 @@ public class Ex02 {
 		for(int i = 0; i < circle.length; i++) {
 			circle[i] = new Circle();
 		}
-		
+		for(int i = 0; i < circle.length; i++) {
+			int rad = circle[i].rad;
+			double around = circle[i].around();
+			double area = circle[i].getArea();
+			System.out.printf("반지름 : %d , 둘레 : %f , 넓이 : %f\n" , rad, around, area);
+		}
+		System.out.println("---------------------------------------------------------------");
 		for(Circle c : circle) {
 			int rad = c.rad;
 			double around = c.around();
