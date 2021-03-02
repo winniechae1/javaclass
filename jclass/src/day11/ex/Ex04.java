@@ -16,8 +16,8 @@ public class Ex04 {
 		for(int i = 0; i < rec.length; i++) {
 			rec[i].setGaro();
 			rec[i].setSero();
-
 		}
+		
 		for(Rec r : rec) {
 			r.toPrint();
 		}
