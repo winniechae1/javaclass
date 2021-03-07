@@ -26,7 +26,7 @@ public class Test08 {
 		
 //		String irum = st.name;
 		st.setName("둘리");
-		System.out.println()
+		System.out.println();
 		
 		// 출력
 		for(int i = 0; i < stud.length; i++) {
