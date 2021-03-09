@@ -3,11 +3,11 @@ package chapter6;
 public class CardTest {
 
 	public static void main(String[] args) {
-		System.out.println("Card.width = " + Card.width);
+		System.out.println("Card.width = " + Card.width);	// 클래스 변수는 객체 생성없이 클래스이름.클래스변수로 사용 가능하다.
 		System.out.println("Card.height = " + Card.height);
 		
 		Card c1 = new Card();
-		c1.kind = "Heart";
+		c1.kind = "Heart";	//	인스턴스변수의 값을 변경
 		c1.number = 7;
 		
 		Card c2 = new Card();
@@ -30,8 +30,8 @@ public class CardTest {
 	}
 }
 class Card {
-	String kind;
-	int number;
-	static int width = 100;
-	static int height = 250;
+	String kind;	//	인스턴스변수
+	int number;		//	인스턴스변수
+	static int width = 100;		//	클래스 변수
+	static int height = 250;	//	클래스 변수
 }
