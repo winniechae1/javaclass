@@ -2,3 +2,263 @@
 
 Á¤±Ô½Ä °Ë»ç
 ÁÖ¾îÁø ¹®ÀÚ¿­ÀÌ Æ¯Á¤ÇÑ ±ÔÄ¢¿¡ ¸Âµµ·Ï ¸¸µé¾îÁ® ÀÖ´ÂÁö¸¦ È®ÀÎÇÏ´Â ±â´É
+
+¿¹]	ÁÖ¹Î¹øÈ£°¡ 6ÀÚ¸®-7ÀÚ¸® ¼ýÀÚ·Î ±¸¼ºµÇ¾î ÀÖ´Â°¡?
+	¾ÆÀÌµð°¡ ¼ø¼öÇÏ°Ô ¼ýÀÚ¿Í ¹®ÀÚ·Î¸¸ ±¸¼ºµÇ¾î ÀÖ´Â°¡?
+	¾ÆÀÌµð°¡ ÃÖ¼Ò ¸î±ÛÀÚ ÀÌ»óÀ¸·Î ±¸¼ºµÇ¾î ÀÖ´Â°¡?
+
+»ç¿ëÇÏ´Â Å¬·¡½º 
+	java.util.regex.Pattern
+ 	Á¤±Ô½Ä °Ë»ç¿¡ »ç¿ëÇÒ Á¤±Ô½Ä ¹®¹ýÀ» ÁöÁ¤ÇÒ Å¬·¡½º 
+ 	
+ 	java.util.regex.Matcher
+ 	Á¤±Ô½Ä °Ë»ç¸¦ ½ÇÁ¦·Î ½ÇÇàÇÒ Å¬·¡½º 
+ 	
+Âü°í]
+	Á¤±Ô½Ä ¹®¹ý 
+
+Âü°í]	
+	[]	-	¿Ã ¼ö ÀÖ´Â ¹®ÀÚ
+			³»ºÎ¿¡ a-z ¼Ò¹®ÀÚ¸¦ ÀÇ¹Ì 
+			A-Z ´ë¹®ÀÚ ÇÏ³ª¸¦ ÀÇ¹Ì 
+			0-9	¼ýÀÚ ÇÏ³ª¸¦ ÀÇ¹Ì 
+			
+	1.	c[a-z]*
+		¹®ÀÚ¸¦ ±×³É ±â¼úÇÏ¸é ¹Ýµå½Ã ±× À§Ä¡¿¡ ÇØ´ç ¹®ÀÚ°¡ ¿Í¾ß ÇÑ´Ù. 
+		[] ¾È¿¡ ±â·ÏÇÏ¸é ±× Áß ÇÏ³ª°¡ ¿Í¾ß ÇÑ´Ù.
+		*Àº ¹Ù·Î ¾Õ¿¡¼­ ÁöÁ¤ÇÑ ±ÛÀÚ°¡ 0°³ ÀÌ»ó ¿Ã ¼ö ÀÖ´Ù.
+		
+		c ·Î ½ÃÀÛÇÏ´Â ¼Ò¹®ÀÚ ¿µ´Ü¾î
+		
+	2.	c[a-z]
+		c·Î ½ÃÀÛÇÏ´Â µÎ ÀÚ¸® ¿µ´Ü¾î 
+	3.	c[a-zA-Z]
+		c·Î ½ÃÀÛÇÏ´Â µÎ ÀÚ¸® ¿µ´Ü¾î (´ë¼Ò¹®ÀÚ ±¸ºÐ¾ÈÇÔ)
+	4.	c[a-zA-Z0-9]
+		c·Î ½ÃÀÛÇÏ°í ¼ýÀÚ¿Í ¿µ¾î·Î Á¶ÇÕµÈ µÎ ±ÛÀÚ
+	4-1	[°¡-ÆR]
+		ÇÑ±Û ÇÑ±ÛÀÚ
+	5.	.*
+		¸ðµç ¹®ÀÚ¿­ 
+	6.	c.
+		c·Î ½ÃÀÛÇÏ´Â µÎÀÚ¸® ¹®ÀÚ¿­ 
+	7.	c.*
+		c·Î ½ÃÀÛÇÏ´Â ¸ðµç ¹®ÀÚ¿­
+	8.	c\.
+		\. Àº ¹Ýµå½Ã . ÀÌ ¿Í¾ßÇÑ´Ù.
+	9.	c\d
+		\d : ¼ýÀÚÇüÅÂÀÇ ¹®ÀÚ¸¦ ÀÇ¹Ì 
+		Ã¹±ÛÀÚ´Â c°¡ ¿Í¾ßÇÏ°í ´ÙÀ½ ¹®ÀÚ´Â ¼ýÀÚÇüÅÂÀÇ ¹®ÀÚ°¡ ¿Í¾ßÇÑ´Ù. 
+	10.	c.*t
+		c·Î ½ÃÀÛÇÏ°í t·Î ³¡³ª´Â ¸ðµç ¹®ÀÚ¿­
+	11.	[b|c].* = [b-c].* = [bc].*
+		b ¶Ç´Â c·Î ½ÃÀÛÇÏ´Â ¹®ÀÚ¿­ 
+	12.	[^b|c].* = [^b-c].* = [^bc].*
+		b ¶Ç´Â c·Î ½ÃÀÛÇÏÁö ¾Ê´Â ¹®ÀÚ¿­
+	13.	.*a.*
+		a°¡ Æ÷ÇÔµÈ ¸ðµç ¹®ÀÚ¿­
+	14.	.*a.+
+		a¸¦ Æ÷ÇÔÇÏ´Â ¸ðµç ¹®ÀÚ¿­
+		+ : 1 ÀÌ»óÀÇ ¹®ÀÚ  
+	15.	[b|c].{2}
+		b ¶Ç´Â c·Î ½ÃÀÛÇÏ´Â ¼¼ÀÚ¸® ¹®ÀÚ¿­ 
+		{2}´Â ±ÛÀÚ ¼ö¸¦ ÀÇ¹Ì 
+	16. .{2,3}
+		{2,3} Àº ±ÛÀÚ ¼ö¸¦ ÀÇ¹Ì 2±ÛÀÚ ÀÌ»ó 3±ÛÀÚ ÀÌÇÏ 
+		
+¿¹]
+	ÈÞ´ëÆù ¹øÈ£ÀÇ Á¤±Ô½Ä ÆÐÅÏÀ» ¸¸µå¼¼¿ä.
+	
+	01[0-9]-[0-9]{4}-[0-9]{4}
+	
+-----------------------------------------------------------------------------
+Scanner 
+¿ÜºÎÀåÄ¡¸¦ ÀÌ¿ëÇØ¼­ µ¥ÀÌÅÍ¸¦ ¹Þ¾ÆµéÀÌ±â À§ÇÑ Å¬·¡½º 
+
+Âü°í]
+	ÀÚ¹Ù´Â IO(input/output) °³³äÀ» ÀÌ¿ëÇØ¼­ ¿ÜºÎÀåÄ¡¿Í ¿¬°áÇÑ´Ù.
+	µû¶ó¼­ °£´ÜÇÑ Å×½ºÆ®¸¦ À§ÇØ¼­µµ IO Ã³¸®¸¦ ÇØ¾ßÇÏ¹Ç·Î °³¹ßÀÚ ÀÔÀå¿¡¼­´Â ºÒÆíÇÏ´Ù.
+	
+»ý¼ºÀÚ 
+¿ÜºÎÀåÄ¡ÀÎ File ÀÌ³ª IO ÀÎ Stream À» ÀÔ·ÂÇØÁÖ±â¸¦ ¿ä±¸ÇÏ°í ÀÖ´Ù.
+
+Âü°í]
+	System.in ÀÌ¶ó´Â ½ºÆ®¸²ÀÌ ÀÖ´Ù.
+	ÀÌ°ÍÀº ³»ºÎÀûÀ¸·Î Å°º¸µå¿Í ¿¬°áÇÑ ½ºÆ®¸²À¸·Î ¸¸µé¾î ³õÀº °ÍÀÌ´Ù.
+	
+	¿ì¸®°¡ 
+	Scanner sc = new Scanner(System.in);
+	Å°º¸µå¸¦ ÅëÇØ¼­ ÀÔ·Â¹ÞÀº Scanner°¡ µÈ °ÍÀÌ´Ù.
+
+------------------------------------------------------------------------------------------
+StringTokenizer 
+±¸ºÐÀÚ¸¦ ±âÁØÀ¸·Î ÅäÅ«ÀÌ¶ó´Â ¿©·¯°³ÀÇ ¹®ÀÚ¿­·Î Àß¶ó³»´Â µ¥ »ç¿ëµÈ´Ù.
+
+»ý¼º¹æ¹ý]
+	1. StringTokenizer(String str)
+		¹®ÀÚ¿­À» °ø¹éÀ» Áß½ÉÀ¸·Î ³ª´©´Â ±â´É 
+		
+	2. StringTokenizer(String str, String delim)
+		¹®ÀÚ¿­À» ÁöÁ¤ÇÑ ±¸ºÐÀÚ(delim)·Î ³ª´©´Â StringTokenizer¸¦ »ý¼ºÇÑ´Ù.
+		
+	3. StringToeknizer(String str, String delim, boolean returnDelims) 
+		2 ¹ø°ú °°°í returnDelimsÀÇ °ªÀ» true ·Î ÇÏ¸é ±¸ºÐÀÚµµ ÅäÅ«À¸·Î °£ÁÖÇÑ´Ù.
+
+ÁÖÀÇ»çÇ×]
+	ºÐ¸®µÈ °á°ú´Â ÀÓ½Ã ¹öÆÛ¿¡ ±â¾ïµÈ´Ù. µû¶ó¼­ ÀÌ°ÍÀº ÇÑ¹ø »ç¿ëÇÏ¸é »ç¿ëÇÒ ¼ö ¾ø°Ô µÇ°í 
+	¹Ýµå½Ã ¼ø¼­´ë·Î¸¸ ²¨³»¾ß ÇÑ´Ù.
+	
+ÁÖ¿äÇÔ¼ö]
+	
+	int countTokens()	ÀüÃ¼ ÅäÅ«ÀÇ ¼ö¸¦ ¹ÝÈ¯ÇÑ´Ù. = ³ª´©¾îÁø °á°ú ¼ö¸¦ ¹ÝÈ¯ÇØÁÖ´Â ÇÔ¼ö
+	boolean hasMoreTokens()		ÅäÅ«ÀÌ ³²¾ÆÀÖ´ÂÁö ¾Ë·ÁÁØ´Ù.
+	boolean hasMoreElements()	ÀÖÀ¸¸é true ¾øÀ¸¸é false¸¦ ¹ÝÈ¯ÇØÁØ´Ù.
+	
+	String nextToken()		´ÙÀ½ µ¥ÀÌÅÍ ²¨³»¼­ ¹ÝÈ¯ÇØÁØ´Ù.
+	String nextElement()	Element´Â Object·Î ¹ÝÈ¯ÇØÁÖ°í Token Àº ¹®ÀÚ¿­·Î ¹ÝÈ¯ÇØÁØ´Ù.
+	
+BigDecimal
+ÀÚ¹Ù¿¡¼­ Á¤¼ö·Î Ç¥ÇöÇÒ ¼ö ¾ø´Â ¼ýÀÚ¸¦ »ç¿ëÇÏ±â À§ÇØ¼­ »ý°Ü³­ Å¬·¡½º 
+
+ÁÖ·Î µ¥ÀÌÅÍº£ÀÌ½º¿Í ¿¬µ¿ÇÒ ¶§ ¿À¶óÅ¬ÀÇ °æ¿ì µ¥ÀÌÅÍ ÇüÅÂ´Â NUMBER(¼ýÀÚ)·Î µ¥ÀÌÅÍ¸¦ ±â¾ïÇÏ´Âµ¥
+ÀÌ¶§ ±â¾ïÇÒ ¼ö ÀÖ´Â ¿À¶óÅ¬ÀÇ ¼ýÀÚÀÇ ÃÖ´ë ÀÚ¸®¼ö´Â 32ÀÚ¸®±îÁö »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+
+¹®Á¦´Â ÀÌ·± Å©±âÀÇ µ¥ÀÌÅÍ´Â ÀÚ¹Ù¿¡¼­´Â Ã³¸®ÇÒ ¼ö ¾ø´Ù. 
+
+¿¹]
+	BigDecimal big = new BigDecimal("12345678901234567890");
+
+Date Å¬·¡½º 
+³¯Â¥¿Í ½Ã°£À» °ü¸®ÇÏ´Â Å¬·¡½º 
+
+»ý¼ºÀÚ ÇÔ¼ö 
+Date()
+ÇöÀç ½Ã½ºÅÛÀÇ ³¯Â¥¿Í ½Ã°£À» ÀÌ¿ëÇØ¼­ °ü¸®ÇÑ´Ù.
+
+Âü°í]
+	ÀÌ Å¬·¡½º´Â Calendar Å¬·¡½º°¡ ¹öÀü¾÷ Å¬·¡½ºÀÌ¹Ç·Î ÀÚ¹Ù´Â Calendar Å¬·¡½ºÀÇ »ç¿ëÀ» 
+	±ÇÀåÇÏ°í ÀÖ´Ù. ÇÏÁö¸¸ ¾ÆÁ÷µµ Date ¸¦ »ç¿ëÇØ¾ß ÇÏ´Â ÇÔ¼ö°¡ Á¸ÀçÇÑ´Ù. 
+	µû¶ó¼­ ¾Ë°í´Â ÀÖ¾î¾ß ÇÑ´Ù.
+	
+Calendar Å¬·¡½º 
+Date Å¬·¡½º¸¦ ¹öÀü¾÷ ½ÃÅ² Å¬·¡½ºÀÌ´Ù.
+
+»ý¼º¹æ¹ý]
+	Calendar cal = new Calendar();	-- X
+	Ãß»óÅ¬·¡½º´Â Ãß»óÇÔ¼ö°¡ 0°³ ÀÌ»ó ÀÖ´Â ¹Ì¿Ï¼ºÀÎ Å¬·¡½ºÀÌ¹Ç·Î new ½ÃÅ³ ¼ö ¾ø´Ù.
+	´Ù¸¥ Å¬·¡½º¿¡ »ó¼Ó½ÃÅ°°Å³ª ¼Ó¼ºÀÌ staticÀÌ°í ¹ÝÈ¯°ªÀÌ ÀÚ±âÀÚ½ÅÀÎ ÇÔ¼ö¸¦ ÅëÇØ¼­ 
+	°´Ã¼¸¦ ¸¸µé¾î¼­ »ç¿ëÇØ¾ß ÇÑ´Ù.
+
+	Calendar cal = Calendar.getInstance();
+
+ÁÖ¿äÇÔ¼ö]
+	get(int field)
+	ÇÊ¿äÇÑ Á¤º¸¸¦ ¾Ë·ÁÁÖ´Â ÇÔ¼ö, ÀÌ ÇÔ¼ö´Â int field¿¡ ¾Ë°íÀÚ ÇÏ´Â ³»¿ëÀ» ¾Ë·ÁÁÖ¸é ±× °ª¿¡ ´ëÇØ¼­ ¾Ë·ÁÁÖ´Â ÇÔ¼ö
+	
+	Áß¿ä]
+		Calendar Å¬·¡½º´Â °¢°¢ÀÇ º¯¼ö°¡ ¹«¾ùÀ» ¾Ë±â À§ÇÑ º¯¼öÀÎÁö¸¦ °øºÎÇØ³õ´Â °ÍÀÌ ÁÁ´Ù.
+	
+	getTime()
+		Calendar Å¬·¡½º¸¦ Date Å¬·¡½º·Î º¯È¯ÇØÁÖ´Â ÇÔ¼ö
+	
+½Ç¹«¿¡¼­´Â Calendar Å¬·¡½º¸¦ ÀÌ¿ëÇØ¼­ ÀÛ¾÷À» ÁøÇàÇÏ´Ù°¡
+			ÇÊ¿äÇÏ¸é Date Å¬·¡½º·Î º¯È¯ÇØ¼­ »ç¿ëÇØ¾ßÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
+			
+			¿¹ ]
+				Calendar cal = Calendar.getInstance();
+				....
+				Date date = cal.getTime();
+				
+		Âü°í ]
+			ÀÚ¹Ù ÇÔ¼ö(APIÇÔ¼ö) ÀÌ¿ë¹æ¹ý
+				ÀÚ¹ÙÀÇ ÇÔ¼ö¸¦ º¸¸é ¹®ÀÚ¿­·Î ÀÇ¹ÌÇÏ´Â ³»¿ëÀ»
+				int ¼ýÀÚ·Î ÀÔ·ÂÇØ ´Þ¶ó´Â ÇÔ¼ö°¡ ¸¹ÀÌ Á¸ÀçÇÑ´Ù.
+				ÀÌ·± °æ¿ì´Â 99%°¡ ÀÚ±â ÀÚ½ÅÀÌ ±× ¹®ÀÚ¿­ÀÇ ÀÇ¹Ì¿Í ¼ýÀÚ¸¦ ¿¬°áÇÏ´Â º¯¼ö(Field)¸¦ °¡Áö°í ÀÖ´Ù.
+				µû¶ó¼­ ÀÌ º¯¼ö¸¦ ÀÌ¿ëÇØ¼­ Ã³¸®ÇÏ¶ó´Â ÀÇ¹Ì°¡ µÈ´Ù.
+				
+				¿¹ ]
+					JFrame fr = new JFrame();
+					JPanel pan = new JPanel();
+					fr.add(pan, BorderLayout.CENTER);
+					
+----------------------------------------------------------------------------------------------------------
+
+Çü½ÄÈ­ Å¬·¡½º
+==> ÁÖ·Î Ã³¸®µÈ °á°ú¸¦ º¸±âÁÁ°Ô Ãâ·ÂÇÏ±â À§ÇÑ ¸ñÀûÀ¸·Î »ç¿ëµÇ¾îÁö´Â Å¬·¡½ºµé...
+	==> °á±¹ µ¥ÀÌÅÍ¸¦ ÀÌ»Ú°Ô ¹®ÀÚ¿­·Î ¹Ù²Ù±â À§ÇÑ Å¬·¡½º...
+	
+	1. DecimalFomat
+		==> ¼ýÀÚ¸¦ º¸±â ÁÁ°Ô ¸¸µé±â À§ÇÑ Å¬·¡½º
+		
+		»ý¼º ¹æ¹ý
+			DecimalFormat(String pattern)
+			À» ÁÖ·Î ÀÌ¿ëÇÑ´Ù.
+			¿©±â¼­ patternÀº ¾î¶² ¸ð¾çÀ¸·Î º¯È¯½ÃÅ³Áö¸¦ ¾Ë·ÁÁÖ´Â ÆÐÅÏÀ» ¾Ë·ÁÁÖ¸é ¸¸µé¾îÁØ´Ù.
+			
+		ÁÖ¿äÇÔ¼ö
+			format(double numer)
+			==> ¼ýÀÚ¸¦ ¿øÇÏ´Â ÇüÅÂÀÇ ¹®ÀÚ¿­·Î º¯È¯½ÃÄÑÁÖ´Â ÇÔ¼ö
+			
+		Âü°í ]
+			ÆÐÅÏ ÁöÁ¤¹ý
+				
+				0		ÇÑÀÚ¸® ¼ýÀÚ¸¦ ÀÇ¹ÌÇÏ¸ç ¹«È¿¼ýÀÚµµ Ç¥½ÃÇÏ°Ô ÇÑ´Ù.
+				#		ÇÑÀÚ¸® ¼ýÀÚ¸¦ ÀÇ¹ÌÇÏ¸ç ¹«È¿¼ýÀÚ´Â Ç¥½ÃÇÏÁö ¾Ê°Ô ÇÑ´Ù.
+				.		¼Ò¼öÀÇ À§Ä¡¸¦ ¾Ë·ÁÁØ´Ù.
+				-		À½¼öÀÏ °æ¿ì - ºÎÈ£ÀÇ À§Ä¡¸¦ ¾Ë·ÁÁØ´Ù.
+				,		3ÀÚ¸®¸¶´Ù , Ç¥½Ã¸¦ ÇÏµµ·Ï ÇÑ´Ù.
+				E		½Ç¼öÀÏ °æ¿ì Áö¼ö ÇüÅÂ·Î Ç¥½ÃÇÏµµ·Ï ÇÑ´Ù.
+				:		ÆÐÅÏÀ» ±¸ºÐÇÑ´Ù.
+						(¾ç¼öÀÏ °æ¿ì¿Í À½¼öÀÏ °æ¿ì¸¦ ±¸ºÐÇØ¼­ Ã³¸®ÇÒ °æ¿ì »ç¿ë)
+				%		¹éºÐÀ² Ç¥½Ã
+				\u00A4	È­Æó´ÜÀ§¸¦ Ç¥½ÃÇÏµµ·Ï ÇÑ´Ù.
+				
+	2. SimpleDateFormat
+		==> µ¥ÀÌÅÍÁß ³¯Â¥µ¥ÀÌÅÍ¸¦ º¸±âÁÁ°Ô ¹®ÀÚ¿­·Î ¸¸µé±â À§ÇÑ Å¬·¡½º
+			
+			API Documentation Âü°í...
+			
+	3. ChoiceFormat
+		==> switchµîÀ» ÀÌ¿ëÇØ¾ß ÇÏ´Â °æ¿ì¿¡ ÀÌ°ÍÀ» °£¼ÒÈ­ ½ÃÅ°±â À§ÇÑ ¹æ¹ý
+			Æ¯Á¤ ¹øÀ§ÀÇ °ªÀº Æ¯Á¤ ¹®ÀÚ¿­·Î ±³Ã¼ÇØ¼­ ¹ÝÈ¯ÇÏ´Â ±â´ÉÀ» °¡Áø Å¬·¡½ºÀÌ´Ù.
+			
+			»ý¼º¹æ¹ý
+				ChoiceFormat(double[] limits, String[] fromats)
+					
+					double[] limits		: Ä¡È¯µÉ ¹øÀ§
+					String[] formats 	: Ä¡È¯ÇÒ ¹®ÀÚ
+					
+	4. MessageFormat
+		==> Æ¯Á¤ ¹®ÀÚ¿­¿¡ Æ¯Á¤ À§Ä¡ÀÇ ³»¿ë¸¸ º¯°æµÇ´Â °æ¿ì
+			¹®ÀÚ¿­ ÀüÃ¼¸¦ ¸¸µéÁö ¾Ê°í 
+			º¯°æµÇ´Â ³»¿ë¸¸ º¯È­½ÃÄÑ¼­
+			ÇÏ³ªÀÇ ¹®ÀÚ¿­À» ¸¸µé¾î³»´Â Å¬·¡½ºÀÌ´Ù.
+			
+		¿¹ ]
+			¿ì¸®°¡ ¿À¶óÅ¬¿¡ INSERT ÁúÀÇ¸í·ÉÀ» ÀÚ¹Ù·Î ¸¸µå´Â °æ¿ì
+			
+			"INSERT INTO member VALUES(123, 'È«±æµ¿', 'MANAGER', ....)"
+			"INSERT INTO member VALUES(124, '°­±æµ¿', 'MANAGER', ....)"
+			"INSERT INTO member VALUES(125, '°í±æµ¿', 'MANAGER', ....)"
+			"INSERT INTO member VALUES(126, '±æµ¿', 'MANAGER', ....)"
+			"INSERT INTO member VALUES(127, '±è±æµ¿', 'MANAGER', ....)"
+			
+			ÀÌ °æ¿ì º¯°æµÇ´Â ¹®ÀÚ¿­ÀÇ ºÎºÐÀº VALUES( ) »çÀÌÀÇ ¹®ÀÚ¿­µéÀÏ °ÍÀÌ´Ù.
+			ÀÌ °æ¿ì ¸Å¹ø Ã³À½ºÎÅÍ ¿©·¯°³¸¦ ¸¸µé¾î¾ß ÇÏ´Â ºÒÆíÇÔÀÌ ÀÖ´Ù.
+			ÀÌ°ÍÀ» ÇØ°áÇÏ´Â Å¬·¡½º°¡ MessageFormat ÀÌ´Ù.
+			
+			Âü°í ÇÔ¼ö ]
+				parse(String source)
+				==> ÁÖ¾îÁø ¹®ÀÚ¿­ Áß¿¡¼­ ½ÇÁ¦ º¯È­µÇ´Â µ¥ÀÌÅÍ ºÎºÐ¸¸ ¾Ë¾Æ³»´Â ÇÔ¼ö
+
+
+
+
+
+
+
+	
+
+
+	
+	
