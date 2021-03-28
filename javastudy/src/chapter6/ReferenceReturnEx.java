@@ -1,8 +1,6 @@
 package chapter6;
 
-class Data {
-	int x;
-}
+
 
 public class ReferenceReturnEx {
 
