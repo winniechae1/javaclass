@@ -116,86 +116,27 @@ public class MemberDao {
 		return list;
 	}
 	
-	// 모든 회원정보 조회 전담 처리 함수
-	public ArrayList<MemberVO> getMemberList(){
-		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
-		
-		con = db.getCon();
-		String sql = mSQL.getSQL(mSQL.SEL_ALL3_LIST);
-		pstmt = db.getPSTMT(con, sql);
-		try {
-
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				MemberVO mvo = new MemberVO();
-				mvo.setName(rs.getString("name"));
-				mvo.setId(rs.getString("id"));
-				mvo.setJdate(rs.getDate("jdate"));
-
-				list.add(mvo);
-			} 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			db.close(rs);
-			db.close(pstmt);
-			db.close(con);
-		}
-		return list;
-	}
 	
-	
-	//	mail을 입력하면 아이디를 입력받아서 수정해주는 기능 
-	// 아이디를 입력받아서 회원정보 조회 전담 처리 함수
-	public MemberVO getMemberInfo(String id) {
-		// 반환값 변수
-		MemberVO mVO = new MemberVO();
-		
-		// 1. 커넥션 얻어오고
+//	  5)  "ano"를 입력하면 아바타 번호를 입력받아 아바타번호 수정해주는 기능
+	public void editAno(String id, int ano) {
 		con = db.getCon();
-		
-		// 2. 질의명령 가져오고
-		String sql = mSQL.getSQL(mSQL.SEL_ID_INFO);
-		
-		// 3. PreparedStatement 꺼내오고
+		String sql = mSQL.getSQL(mSQL.EDIT_AVT);
 		pstmt = db.getPSTMT(con, sql);
 		
-		// 지금 이 상태는 질의명령이 완성되지 않은 상태이므로
-		// 질의명령을 완성해준다.
 		try {
-			// 데이터채워서 질의명령 완성
-			pstmt.setString(1, id);
-			// 이제 질의명령은 완성이 됬고 보내서 결과를 받자.
-			rs = pstmt.executeQuery();
-			// 레코드포인터를 BOF에서 한행 내리고
-			rs.next();
-			// 데이터 꺼내서 VO 에 담고
-			mVO.setMno(rs.getInt("mno"));
-			mVO.setName(rs.getString("name"));
-			mVO.setId(rs.getString("id"));
-			mVO.setMail(rs.getString("mail"));
-			mVO.setTel(rs.getString("tel"));
-			mVO.setGen(rs.getString("gen").equals("M") ? "남자" : "여자");
-			mVO.setAno(rs.getInt("ano"));
-			mVO.setJdate(rs.getDate("jdate"));
-			mVO.setJtime(rs.getTime("jdate"));
-			
+			pstmt.setInt(1, ano);
+			pstmt.setString(2, id);
+			pstmt.executeQuery();
+			System.out.println("아바타 번호수정을 완료했습니다.");
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-			db.close(rs);
 			db.close(pstmt);
 			db.close(con);
 		}
-		
-		// 데이터 반환
-		return mVO;
 	}
 	
-	
-	// "mail"을 입력하면 아이디와 새로운 메일을 입력받아서
-	   //   회원의 메일을 수정해주는 기능
+//		4) "mail"을 입력하면 아이디와 새로운 메일을 입력받아서 회원의 메일을 수정해주는 기능
 	   public void editMail(String id, String mail) {
 	      con = db.getCon();
 	      String sql = mSQL.getSQL(mSQL.EDIT_MAIL);
@@ -204,7 +145,6 @@ public class MemberDao {
 	      try {
 	         pstmt.setString(1, mail);
 	         pstmt.setString(2, id);
-	         
 	         pstmt.executeQuery();
 	         System.out.println("메일수정을 완료했습니다.");
 	      } catch(Exception e) {
@@ -215,25 +155,7 @@ public class MemberDao {
 	      }
 	
 	   }
-	   
-	   public void editAno(String id, int ano) {
-		   con = db.getCon();
-		   String sql = mSQL.getSQL(mSQL.EDIT_AVT);
-		   pstmt = db.getPSTMT(con, sql);
-
-		   try {
-			   pstmt.setInt(1, ano);
-			   pstmt.setString(2, id);
-			   pstmt.executeQuery();
-			   System.out.println("아바타 번호수정을 완료했습니다.");
-		   }  catch(Exception e) {
-			   e.printStackTrace();
-		   } finally {
-			   db.close(pstmt);
-			   db.close(con);
-		   }
-	   }
-	   
+//		3) "add"를 입력하면 회원의 정보를 입력받아서 회원가입을 처리해주는 기능
 	   public void addMember() {
 		   try {
 			   con = db.getCon();
@@ -243,19 +165,19 @@ public class MemberDao {
 			   Scanner sc = new Scanner(System.in);
 			   System.out.println();
 
-			   System.out.print("이름 입력 : ");
+			   System.out.print("이름 입력 >");
 			   String name = sc.nextLine();
-			   System.out.print("아이디 입력 : ");
+			   System.out.print("아이디 입력 >");
 			   String id = sc.nextLine();
-			   System.out.print("비번 입력 : ");
+			   System.out.print("비밀번호 입력 >");
 			   String pw = sc.nextLine();
-			   System.out.print("메일 입력 : ");
+			   System.out.print("메일 입력 >");
 			   String mail = sc.nextLine();
-			   System.out.print("전화번호 입력 : ");
+			   System.out.print("전화번호 입력 >");
 			   String tel = sc.nextLine();
-			   System.out.print("성별 입력 : ");
+			   System.out.print("성별 입력 >");
 			   String gen = sc.nextLine();
-			   System.out.print("아바타 번호 입력 : ");
+			   System.out.print("아바타 번호 입력 >");
 			   int avt = sc.nextInt();
 
 			   pstmt.setString(1, name);
@@ -266,21 +188,95 @@ public class MemberDao {
 			   pstmt.setString(6, gen);
 			   pstmt.setInt(7, avt);
 
-
 			   int cnt = pstmt.executeUpdate();
 
 			   if(cnt == 1) {
-				   System.out.println("가입성공");
+				   System.out.println("가입을 성공했습니다.");
 			   } else {
-				   System.out.println("가입오류");            
+				   System.out.println("가입을 실패했습니다.");            
 			   }
-		   }catch(Exception e) {
+			   
+		   } catch(Exception e) {
 			   e.printStackTrace();
-		   }finally{
-			   try{
+		   } finally{
+			   try {
 				   pstmt.close();
 				   con.close();
-			   }catch(Exception e) {}
+			   } catch(Exception e) {}
 		   }
 	   }
+//	2) "id"을 입력하면 회원들의 아이디 리스트를 보여주고 아이디를 입력받아서 해당 회원의 정보를보여주는 기능	
+	   public MemberVO getMemberInfo(String id) {
+		   // 반환값 변수
+		   MemberVO mVO = new MemberVO();
+		   
+		   // 1. 커넥션 얻어오고
+		   con = db.getCon();
+		   
+		   // 2. 질의명령 가져오고
+		   String sql = mSQL.getSQL(mSQL.SEL_ID_INFO);
+		   
+		   // 3. PreparedStatement 꺼내오고
+		   pstmt = db.getPSTMT(con, sql);
+		   
+		   // 지금 이 상태는 질의명령이 완성되지 않은 상태이므로
+		   // 질의명령을 완성해준다.
+		   try {
+			   // 데이터채워서 질의명령 완성
+			   pstmt.setString(1, id);
+			   // 이제 질의명령은 완성이 됬고 보내서 결과를 받자.
+			   rs = pstmt.executeQuery();
+			   // 레코드포인터를 BOF에서 한행 내리고
+			   rs.next();
+			   // 데이터 꺼내서 VO 에 담고
+			   mVO.setMno(rs.getInt("mno"));
+			   mVO.setName(rs.getString("name"));
+			   mVO.setId(rs.getString("id"));
+			   mVO.setMail(rs.getString("mail"));
+			   mVO.setTel(rs.getString("tel"));
+			   mVO.setGen(rs.getString("gen").equals("M") ? "남자" : "여자");
+			   mVO.setAno(rs.getInt("ano"));
+			   mVO.setJdate(rs.getDate("jdate"));
+			   mVO.setJtime(rs.getTime("jdate"));
+			   
+		   } catch(Exception e) {
+			   e.printStackTrace();
+		   } finally {
+			   db.close(rs);
+			   db.close(pstmt);
+			   db.close(con);
+		   }
+		   // 데이터 반환
+		   return mVO;
+	   }
+	   
+//		1) "l"을 입력하면 회원들의 회원이름, 아이디, 가입일을 조회해서 보여주는 프로그램 
+	   public ArrayList<MemberVO> getMemberList(){
+		   ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		   
+		   con = db.getCon();
+		   String sql = mSQL.getSQL(mSQL.SEL_ALL3_LIST);
+		   pstmt = db.getPSTMT(con, sql);
+		   
+		   try {
+			   rs = pstmt.executeQuery();
+			   
+			   while(rs.next()) {
+				   MemberVO mvo = new MemberVO();
+				   mvo.setName(rs.getString("name"));
+				   mvo.setId(rs.getString("id"));
+				   mvo.setJdate(rs.getDate("jdate"));
+				   
+				   list.add(mvo);
+			   } 
+		   } catch (Exception e) {
+			   e.printStackTrace();
+		   } finally {
+			   db.close(rs);
+			   db.close(pstmt);
+			   db.close(con);
+		   }
+		   return list;
+	   }
+	   
 }

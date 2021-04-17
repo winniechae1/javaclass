@@ -1,0 +1,27 @@
+지네릭스 : 메서드와 클래스의 타입을 컴파일하는 동안 체크하는 기능이다.
+
+지네릭스 장점 
+1) 타입안정성을 제공한다.
+2) 타입체크와 형변환을 생략할 수 있으므로 코드가 간결해진다.
+
+예] 
+	class Box {
+		Object item;
+		
+		void setItem(Object item) { this.item = item; }
+		Object getItem() { return item; }
+	}
+
+==> class Box<T> {	// T : '타입변수'
+		T item;
+		
+		void setItem(T item) { this.item = item; }
+		T getItem() { return item; }
+	}
+	
+지네릭스 용어 
+
+Box<T> : 지네릭 클래스. 'T의 Box' 또는 'T Box'
+T : 타입 변수 또는 타입 매개변수 
+Box : 원시 타입(raw type)
+

@@ -39,15 +39,15 @@ public class Member {
 	//	전체 명령 처리함수
 	public void exec(Scanner sc) {
 		StringBuffer buff = new StringBuffer();
-		buff.append("작업을 선택하세요!");
-		buff.append("\n\t전체회원 출력 : l");
-		buff.append("\n\tid로 정보조회 : id");
-		buff.append("\n\t회원가입 처리 : add");
-		buff.append("\n\t회원메일 수정 : mail");
-		buff.append("\n\t회원아바타 수정 : ano");
-		buff.append("\n\t프로그램 종료 : q");
+		buff.append("작업을 선택하세요.>");
+		buff.append("\n\t전체회원 출력 > l");
+		buff.append("\n\tid로 정보조회 > id");
+		buff.append("\n\t회원가입 처리 > add");
+		buff.append("\n\t회원메일 수정 > mail");
+		buff.append("\n\t회원아바타 수정 > ano");
+		buff.append("\n\t프로그램 종료 > q");
 		buff.append("");
-		buff.append("\n코드 선택 : ");
+		buff.append("\n코드 선택 > ");
 		// 프로그램을 언제 종료할지 모르므로 무한반복해야한다.
 		loop:
 		for(;;) {
@@ -55,7 +55,7 @@ public class Member {
 			String code = sc.nextLine();
 			switch(code) {
 			case "q":
-				System.out.println("프로그램 종료");
+				System.out.println("프로그램을 종료합니다.");
 				break loop;
 			case "l":
 				showMemberList();
@@ -69,46 +69,45 @@ public class Member {
 			case "ano":
 				editAno(sc);
 				break;
-				
 			}
 		}
 	}
 	
-	//	회원의 아이디와 메일을 입력받아서 수정해주는 함수 
-	public void editMail(Scanner sc) {
-		System.out.print("아이디 입력 : ");
+	
+	
+//		회원의 아바타 번호를 이용해서 수정해주는 함수
+	public void editAno(Scanner sc) {
+		System.out.print("아이디를 입력하세요.>");
 		String id = sc.nextLine();
-		System.out.print("메일 입력 : ");
+		System.out.print("아바타 번호를 입력하세요.>");
+		int ano = sc.nextInt();
+		mDao.editAno(id, ano);
+	}
+	
+//		회원의 아이디와 메일을 입력받아서 수정해주는 함수 
+	public void editMail(Scanner sc) {
+		System.out.print("아이디를 입력하세요.>");
+		String id = sc.nextLine();
+		System.out.print("메일을 입력하세요.>");
 		String mail = sc.nextLine();
 		mDao.editMail(id, mail);
 	}
-	//	회원의 아바타 번호를 이용해서
-	public void editAno(Scanner sc) {
-		System.out.print("아이디 입력 : ");
-		String id = sc.nextLine();
-		System.out.print("아바타 번호 입력 : ");
-		int ano = sc.nextInt();
-		mDao.editAno(id,ano);
-	}
-	//	회원가입 처리함수
+
+//		 회원가입 처리함수
 	   public void addMember(Scanner sc) {
 		      mDao.addMember();
 		   }
-	
-	//	모든 회원 리스트 보여주는 함수
+
+//	 	모든 회원 리스트 보여주는 함수
 	public void showMemberList() {
 		ArrayList<MemberVO> list = mDao.getMemberList();
 		
 		for(MemberVO vo : list) {
-			System.out.println("name : " + vo.getName() + ", id : " + vo.getId() + ", jdate" + vo.getJdate());
+			System.out.println("name >" + vo.getName() + ", id >" + vo.getId() + ", jdate >" + vo.getJdate());
 		}
-		
 	}
 	
-	
-
-	
-	// 아이디 리스트 가져와서 출력해주는 함수
+//	 	아이디 리스트 가져와서 출력해주는 함수
 	public void getIdList() {
 		ArrayList<String> idList = mDao.getIdList();
 		// MemberDao에 있는 getIdList() 함수는 아이디리스트를 내보내줄텐데
@@ -122,24 +121,22 @@ public class Member {
 		
 	}
 	
-	// 아이디를 입력받아서 해당아이디의 정보를 출력해주는 함수
+// 	 아이디를 입력받아서 해당아이디의 정보를 출력해주는 함수
 	public void getInfo(Scanner s) {
 		while(true) {
 			getIdList();
 			System.out.println();
 			// 먼저 메세지 출력하고
-			System.out.print("조회할 아이디 : ");
+			System.out.print("조회할 아이디 >");
 			String sid = s.nextLine();
 			if(sid.equals("q")) {
 				break;
 			}
-			
 			MemberVO mVO = mDao.getMemberInfo(sid);
 			System.out.println(mVO);
 		}
 	}
 	
-	// "l"을 입력
 	public static void main(String[] args) {
 		new Member();
 	}
